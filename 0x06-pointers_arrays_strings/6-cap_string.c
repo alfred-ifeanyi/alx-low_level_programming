@@ -1,36 +1,41 @@
 /**
- * cap_string - Capitalizes all words of a string.
- * @str: Pointer to the input string
+ * cap_string - a function that capitalizes
+ *              all words of a string
  *
- * Return: Pointer to the modified string
- */
-char *cap_string(char *str)
+ * @s: pointer to char input array
+ *
+ * Return: @s
+*/
+
+char *cap_string(char *s)
 {
 	int i = 0;
 
-	while (str[i] != '\0')
+	/*iterate through our array values*/
+	while (s[i] != '\0')
 	{
-		if (i == 0 ||
-				str[i - 1] == ' ' || str[i - 1] == '\t' || str[i - 1] == '\n' ||
-				str[i - 1] == ',' || str[i - 1] == ';' || str[i - 1] == '.' ||
-				str[i - 1] == '!' || str[i - 1] == '?' || str[i - 1] == '"' ||
-				str[i - 1] == '(' || str[i - 1] == ')' || str[i - 1] == '{' ||
-				str[i - 1] == '}')
+		/*check for any lowercase letters*/
+		if (s[i] >= 97 && s[i] <= 122)
 		{
-			if (str[i] >= 'a' && str[i] <= 'z')
+			/**
+			 * if we have a null character
+			 * change its value to capital
+			*/
+			if (i == 0)
 			{
-				str[i] -= 32;
+				s[i] -= 32;
 			}
-		}
-		else
-		{
-			if (str[i] >= 'A' && str[i] <= 'Z')
+
+			if (s[i - 1] == 32 || s[i - 1] == 9 || s[i - 1] == 10 ||
+				s[i - 1] == 44 || s[i - 1] == 59 || s[i - 1] == 46 ||
+				s[i - 1] == 33 || s[i - 1] == 63 || s[i - 1] == 34 ||
+				s[i - 1] == 40 || s[i - 1] == 41 || s[i - 1] == 123 ||
+				s[i - 1] == 124)
 			{
-				str[i] += 32;
+				s[i] -= 32;
 			}
 		}
 		i++;
 	}
-
-	return (str);
+	return (s);
 }
